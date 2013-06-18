@@ -1,0 +1,11 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{indentfirst}
+\usepackage{CJK}
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+\setlength{\parindent}{2em}
+\begin{document}
+\begin{CJK*}{GBK}{kai}
+\end{CJK*}
+\end{document}
