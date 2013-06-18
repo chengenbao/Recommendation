@@ -1,11 +1,28 @@
-\documentclass{article}
-\usepackage{graphicx}
-\usepackage{color}
-\usepackage{indentfirst}
-\usepackage{CJK}
-\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
-\setlength{\parindent}{2em}
+\documentclass[a4paper,twocolumn]{article} %两列
+\usepackage{graphicx}%插图宏集
+\usepackage{titletoc}%要调整章节标题在目录页中的格式，可以用titletoc宏包 title of contents
+\usepackage{titlesec} %其中 center 可使标题居中,还可设为 raggedleft (居左，默认),
+%\usepackage{abstract}摘要分栏的宏包
+\usepackage{fontspec, xunicode, xltxtra}
+\usepackage{xeCJK}%中文字体
+\setmainfont{Times New Roman}
+\setCJKmainfont{楷体_GB2312}
 \begin{document}
-\begin{CJK*}{GBK}{kai}
-\end{CJK*}
-\end{document}
+\renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}
+\renewcommand{\contentsname}{目 \quad 录}
+\title{基于内容的论文推荐系统设计实现}
+\author{陈根宝}
+\date{\today}
+\maketitle
+\newpage
+\begin{center}
+\tableofcontents
+\end{center}
+\newpage
+\section{引言}
+\section{算法设计}
+\section{数据库设计}
+\section{模块设计}
+\section{接口设计}
+\section{some troubles}
+\end{document} 

@@ -1,25 +1,27 @@
-\documentclass{article}
+% !Mode:: "TeX:UTF-8"
+\documentclass[a4paper]{article}
 \usepackage{graphicx}
-\usepackage{color}
-\usepackage{indentfirst}
-\usepackage{CJK}
-\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
-\setlength{\parindent}{2em}
+\usepackage{titletoc}
+\usepackage{titlesec}
+%\usepackage{abstract}
+\usepackage{fontspec, xunicode, xltxtra}
+\usepackage{xeCJK}
+\setmainfont{Times New Roman}
+\setCJKmainfont{åæ–‡æ¥·ä½“}
 \begin{document}
-\begin{CJK*}{GBK}{kai}
-\renewcommand{\today}{\number\year Äê \number\month ÔÂ \number\day ÈÕ}
-\renewcommand{\contentsname}{Ä¿ \quad Â¼}
-\title{»ùÓÚÄÚÈİµÄÂÛÎÄÍÆ¼öÏµÍ³Éè¼ÆÊµÏÖ}
-\author{³Â¸ù±¦}
+\renewcommand{\today}{\number\year å¹´ \number\month æœˆ \number\day æ—¥}
+\renewcommand{\contentsname}{ç›® \quad å½•}
+\title{åŸºäºå†…å®¹çš„è®ºæ–‡æ¨èç³»ç»Ÿ}
+\author{é™ˆæ ¹å®}
 \date{\today}
 \maketitle
 \newpage
 \tableofcontents
 \newpage
-\section{ÒıÑÔ}
-\section{Ëã·¨Éè¼Æ}
-\section{Êı¾İ¿âÉè¼Æ}
-\section{Ä£¿éÉè¼Æ}
-\section{½Ó¿ÚÉè¼Æ}
-\end{CJK*}
-\end{document}
+\section{å¼•è¨€}
+\section{ç®—æ³•è®¾è®¡}
+\section{æ•°æ®åº“è®¾è®¡}
+\section{æ¨¡å—è®¾è®¡}
+\section{æ¥å£è®¾è®¡}
+\section{some troubles}
+\end{document} 
