@@ -3,11 +3,37 @@
 \usepackage{graphicx}
 \usepackage{titletoc}
 \usepackage{titlesec}
+\usepackage{listings}
+\usepackage{xcolor}
 %\usepackage{abstract}
 \usepackage{fontspec, xunicode, xltxtra}
 \usepackage{xeCJK}
-\setmainfont{Times New Roman}
+\setmainfont{Consolas}
 \setCJKmainfont{华文楷体}
+\lstset{ %Settings for listings package.
+ language=[ANSI]{C},
+ %backgroundcolor=\color{lightgray},
+ basicstyle=\footnotesize,
+ breakatwhitespace=false,
+ breaklines=true,
+ captionpos=b,
+ commentstyle=\color{olive},
+ directivestyle=\color{blue},
+ extendedchars=false,
+ % frame=single,%shadowbox
+ framerule=0pt,
+ keywordstyle=\color{blue}\bfseries,
+ morekeywords={*,define,*,include...},
+ numbersep=5pt,
+ rulesepcolor=\color{red!20!green!20!blue!20},
+ showspaces=false,
+ showstringspaces=false,
+ showtabs=false,
+ stepnumber=2,
+ stringstyle=\color{purple},
+ tabsize=4,
+ title=\lstname
+} 
 \begin{document}
 \renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}
 \renewcommand{\contentsname}{目 \quad 录}
@@ -59,9 +85,62 @@ TD、-IDF阈值的方法，这种方法实现起来会比较简单。但是英�
 \subsubsection{内容相似度计算}
 相似度计算比较简单，直接采用向量空间模型（vector space model）进行计算。
 \subsection{论文作者}
+根据实际经验，论文的作者一般会专注于某一个或几个领域的研究。因此可以将论文作者在知识领域的影响力作为%
+影响论文推荐评分的一个指标。论文作者的影响力正比于其所发的论文的被引用次数。
 \subsection{论文引用关系}
+如果将A论文对B论文的引用看作是A对B的推荐，由此很自然的想到Pagerank算法，并由此可以计算出论文的重要性。
 \subsection{读者行为}
+在读者使用闪记产品过程中，可以将用户的阅读论文的行为看成是对论文的评分，将论文看做物品，从而可以用协同%
+过滤进行推荐。这中推荐在闪记用户越来越大的情况下会越来越精确。
 \section{数据库设计}
+论文推荐需要用到以下数据库表。
+\subsection{论文信息表 --- PaperInfo table}
+该表描述论文的基本信息，有id、标题、概要、关键字字段。建表语句如下。
+\begin{lstlisting}[ language=sql]
+CREATE TABLE PaperInfo(
+    id INT NOT NULL, 
+    title VARCHAR(256), 
+    abstract TEXT, 
+    keywords VARCHAR(128),
+    PRIMARY KEY(id)
+)ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+\end{lstlisting}
+\subsection{作者信息表 --- AuthorInfo table}
+\begin{lstlisting}[ language=sql]
+CREATE TABLE AuthorInfo(
+    id INT NOT NULL,
+    name VARCHAR(64),
+    PRIMARY KEY(id)
+)ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+\end{lstlisting}
+\subsection{论文作者关系表 --- PaperAuthorRel table}
+\begin{lstlisting}[language=sql]
+CREATE TABLE PaperAuthorRel(
+    id INT NOT NULL,
+    author_id INT NOT NULL,
+    paper_id INT NOT NULL,
+    PRIMARY KEY(id)
+)ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+\end{lstlisting}
+\subsection{论文引用关系表 --- PaperRef table}
+\begin{lstlisting}[language=sql]
+CREATE TABLE PaperRef(
+    id INT NOT NULL,
+    ref_id INT NOT NULL,
+    beref_id INT NOT NULL,
+    PRIMARY KEY(id)
+)ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+\end{lstlisting}
+\subsection{用户推荐论文结果表 --- RecForU\$uid table}
+\begin{lstlisting}[language=sql]
+CREATE TABLE RecForU$uid(
+    id INT NOT NULL,
+    paper_id INT NOT NULL,
+    recom_time DATETIME NOT NULL,
+    PRIMARY KEY(id)
+)ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+\end{lstlisting}
+对于每一个用户都有这样一张表，其中\$uid为用户的id。
 \section{模块设计}
 \section{接口设计}
 \section{some troubles}
