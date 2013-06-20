@@ -5,7 +5,7 @@ use PaperRecommendation;
 -- 论文基本信息表
 DROP TABLE IF EXISTS PaperInfo;
 CREATE TABLE PaperInfo(
-    id INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(256),
     abstract TEXT,
     keywords VARCHAR(128),
@@ -15,7 +15,7 @@ CREATE TABLE PaperInfo(
 -- 作者信息表
 DROP TABLE IF EXISTS AuthorInfo;
 CREATE TABLE AuthorInfo(
-    id INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(64),
     PRIMARY KEY(id)
 )ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
@@ -23,7 +23,7 @@ CREATE TABLE AuthorInfo(
 -- 论文-作者关系表
 DROP TABLE IF EXISTS PaperAuthorRel;
 CREATE TABLE PaperAuthorRel(
-    id INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     author_id INT NOT NULL,
     paper_id INT NOT NULL,
     PRIMARY KEY(id)
@@ -32,7 +32,7 @@ CREATE TABLE PaperAuthorRel(
 -- 论文引用关系表
 DROP TABLE IF EXISTS PaperRef;
 CREATE TABLE PaperRef(
-    id INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     ref_id INT NOT NULL,
     beref_id INT NOT NULL,
     PRIMARY KEY(id)
@@ -41,7 +41,7 @@ CREATE TABLE PaperRef(
 -- 推荐结果模板表
 DROP TABLE IF EXISTS RecForUser;
 CREATE TABLE RecForUser(
-    id INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     paper_id INT NOT NULL,
     recom_time DATETIME NOT NULL,
     PRIMARY KEY(id)
