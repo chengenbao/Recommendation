@@ -8,7 +8,6 @@ CREATE TABLE PaperInfo(
     id INT NOT NULL AUTO_INCREMENT,
     author_id INT NOT NULL,
     create_time DATETIME,
-    author_department_id INT,
     title VARCHAR(256),
     abstract TEXT,
     keywords VARCHAR(128),
@@ -19,8 +18,19 @@ CREATE TABLE PaperInfo(
 DROP TABLE IF EXISTS AuthorInfo;
 CREATE TABLE AuthorInfo(
     id INT NOT NULL AUTO_INCREMENT,
+    author_department_id INT,
     name VARCHAR(64),
     PRIMARY KEY(id)
+)ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+-- 论文作者关系表
+DROP TABLE IF EXISTS PaperAuthorRel;
+CREATE TABLE PaperAuthorRel(
+    id INT NOT NULL AUTO_INCREMENT,
+    author_id INT NOT NULL,
+    paper_id INT NOT NULL,
+    isprimary SMALLINT NOT NULL,
+    PRIMARY  KEY(ID)
 )ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- 部门表
