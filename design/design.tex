@@ -33,7 +33,7 @@
  stringstyle=\color{purple},
  tabsize=4,
  title=\lstname
-} 
+}
 \begin{document}
 \renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}
 \renewcommand{\contentsname}{目 \quad 录}
@@ -98,9 +98,9 @@ TD、-IDF阈值的方法，这种方法实现起来会比较简单。但是英�
 该表描述论文的基本信息，有id、标题、概要、关键字字段。建表语句如下。
 \begin{lstlisting}[ language=sql]
 CREATE TABLE PaperInfo(
-    id INT NOT NULL, 
-    title VARCHAR(256), 
-    abstract TEXT, 
+    id INT NOT NULL,
+    title VARCHAR(256),
+    abstract TEXT,
     keywords VARCHAR(128),
     PRIMARY KEY(id)
 )ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;

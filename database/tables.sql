@@ -6,6 +6,9 @@ use PaperRecommendation;
 DROP TABLE IF EXISTS PaperInfo;
 CREATE TABLE PaperInfo(
     id INT NOT NULL AUTO_INCREMENT,
+    author_id NOT NULL,
+    create_time DATETIME,
+    author_department_id INT,
     title VARCHAR(256),
     abstract TEXT,
     keywords VARCHAR(128),
@@ -20,12 +23,11 @@ CREATE TABLE AuthorInfo(
     PRIMARY KEY(id)
 )ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
--- 论文-作者关系表
-DROP TABLE IF EXISTS PaperAuthorRel;
-CREATE TABLE PaperAuthorRel(
+-- 部门表
+DROP TABLE IF EXISTS Department;
+CREATE TABLE Department{
     id INT NOT NULL AUTO_INCREMENT,
-    author_id INT NOT NULL,
-    paper_id INT NOT NULL,
+    name VARCHAR(128)
     PRIMARY KEY(id)
 )ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
