@@ -72,15 +72,15 @@ CREATE TABLE Conferences(
 
 
 -- 知识分类表
-DROP TABLE IF NOT EXISTS Classfination；
+DROP TABLE IF EXISTS Classfination;
 CREATE TABLE Classfination(
-    id INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     keywords VARCHAR(128),
     PRIMARY KEY(id)
 );
 
 -- 读者知识分类表
-DROP TABLE IF NOT EXISTS ReaderClass;
+DROP TABLE IF EXISTS ReaderClass;
 CREATE TABLE ReaderClass(
     id INT NOT NULL,
     reader_id INT NOT NULL,
