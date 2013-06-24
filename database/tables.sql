@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS PaperInfo;
 CREATE TABLE PaperInfo(
     id INT NOT NULL AUTO_INCREMENT,
     author_id INT NOT NULL,
+    conference_id INT NOT NULL,
     create_time DATETIME,
     title VARCHAR(256),
     abstract TEXT,
@@ -58,4 +59,32 @@ CREATE TABLE RecForUser(
     recom_time DATETIME NOT NULL,
     PRIMARY KEY(id)
 )ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+-- 会议表
+DROP TABLE IF EXISTS Conferences;
+CREATE TABLE Conferences(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(256),
+    level SMALLINT NOT NULL,
+    type INT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+
+-- 知识分类表
+DROP TABLE IF NOT EXISTS Classfination；
+CREATE TABLE Classfination(
+    id INT NOT NULL,
+    keywords VARCHAR(128),
+    PRIMARY KEY(id)
+);
+
+-- 读者知识分类表
+DROP TABLE IF NOT EXISTS ReaderClass;
+CREATE TABLE ReaderClass(
+    id INT NOT NULL,
+    reader_id INT NOT NULL,
+    class_id INT NOT NULL,
+    PRIMARY KEY(id)
+);
 
