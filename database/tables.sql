@@ -82,10 +82,10 @@ CREATE TABLE Classfination(
 );
 
 -- 读者知识分类表
-DROP TABLE IF EXISTS ReaderClass;
+DROP TABLE IF EXISTS UserClass;
 CREATE TABLE ReaderClass(
     id INT NOT NULL,
-    reader_id INT NOT NULL,
+    user_id INT NOT NULL,
     class_id INT NOT NULL,
     PRIMARY KEY(id)
 );
