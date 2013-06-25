@@ -56,7 +56,8 @@ DROP TABLE IF EXISTS RecForUser;
 CREATE TABLE RecForUser(
     id INT NOT NULL AUTO_INCREMENT,
     user_id INT NOT NULL,
-    paper_id INT NOT NULL,
+    src_paper_id INT NOT NULL, -- 推荐源paper id
+    rec_paper_id INT NOT NULL, -- 推荐paper id
     rec_time DATETIME NOT NULL,
     PRIMARY KEY(id)
 )ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
