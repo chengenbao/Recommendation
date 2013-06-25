@@ -55,7 +55,7 @@ CREATE TABLE PaperRef(
 DROP TABLE IF EXISTS RecForUser;
 CREATE TABLE RecForUser(
     id INT NOT NULL AUTO_INCREMENT,
-    reader_id INT NOT NULL,
+    user_id INT NOT NULL,
     paper_id INT NOT NULL,
     rec_time DATETIME NOT NULL,
     PRIMARY KEY(id)
