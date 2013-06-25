@@ -7,8 +7,8 @@ DROP TABLE IF EXISTS PaperInfo;
 CREATE TABLE PaperInfo(
     id INT NOT NULL AUTO_INCREMENT,
     author_id INT NOT NULL,
-    conference_id INT NOT NULL,
-    create_time DATETIME,
+    source_id INT NOT NULL,
+    publication_time DATETIME,
     title VARCHAR(256),
     abstract TEXT,
     keywords VARCHAR(128),
@@ -19,7 +19,7 @@ CREATE TABLE PaperInfo(
 DROP TABLE IF EXISTS AuthorInfo;
 CREATE TABLE AuthorInfo(
     id INT NOT NULL AUTO_INCREMENT,
-    author_department_id INT,
+    author_affiliation_id INT,
     name VARCHAR(64),
     PRIMARY KEY(id)
 )ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
@@ -35,8 +35,8 @@ CREATE TABLE PaperAuthorRel(
 )ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- 部门表
-DROP TABLE IF EXISTS Department;
-CREATE TABLE Department(
+DROP TABLE IF EXISTS Affiliation;
+CREATE TABLE Affiliation(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(128),
     PRIMARY KEY(id)
@@ -55,14 +55,15 @@ CREATE TABLE PaperRef(
 DROP TABLE IF EXISTS RecForUser;
 CREATE TABLE RecForUser(
     id INT NOT NULL AUTO_INCREMENT,
+    reader_id INT NOT NULL,
     paper_id INT NOT NULL,
-    recom_time DATETIME NOT NULL,
+    rec_time DATETIME NOT NULL,
     PRIMARY KEY(id)
 )ENGINE=MyISAM  AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
--- 会议表
-DROP TABLE IF EXISTS Conferences;
-CREATE TABLE Conferences(
+-- 论文来源表
+DROP TABLE IF EXISTS Sources;
+CREATE TABLE Sources(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(256),
     level SMALLINT NOT NULL,
