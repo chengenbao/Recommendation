@@ -9,6 +9,7 @@ A easy python crawler for paper
 '''
 
 import urllib2
+import cookielib
 import cStringIO
 import gzip
 from urlparse import urlparse
@@ -27,7 +28,7 @@ class PaperCrawler:
 				url = self._url
 			p = urlparse(url)
 			host = p.netloc.split(':')[0]
-			referer = p.scheme + '://' + host
+			referer = url
 			headers = []
 			headers.append(('Accept', 'text/html, application/xhtml+xml, */*'))
 			headers.append(('Referer', referer))
@@ -36,22 +37,35 @@ class PaperCrawler:
 			headers.append(('Accept-Encoding', 'gzip, deflate'))
 			headers.append(('Host', host))
 			headers.append(('Connection', 'Keep-Alive'))
+
+			#cookies = cookielib.CookieJar()
+			#opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookies))
 			opener = urllib2.build_opener()
 			opener.addheaders = headers
 			f = opener.open(url)
-			print repr(f.info().items())
 			isGzipped = f.headers.get('content-encoding', '').find('gzip') >= 0
 			data = ""
+			#print cookies
 			while True:
 				tmp = f.read(READ_BLOCK_SIZE)
 				if not tmp: break
 				data += tmp
 			f.close()
-			print isGzipped
 			if isGzipped:
 				data = cStringIO.StringIO(data)
 				data = gzip.GzipFile(fileobj=data).read()
-			return data 
+			article_ids = self.parse(data)
+			for id in article_ids:
+				url = "http://www.citeulike.org/bibtex/user/ricardcasas/article/"
+				url += id
+				url += "?do_username_prefix=0&key_type=0&incl_amazon=1&clean_urls=1&smart_wrap=1&q="
+				print url
+				f = urllib2.urlopen(url)
+				page = f.read()
+				print page
+				file = open(id + ".txt", "w")
+				file.write(page)
+				file.close()
 		except urllib2.URLError:
 			print "open " + self._url + " error"
 	def parse(self, data):
@@ -61,16 +75,6 @@ class PaperCrawler:
 
 if __name__ == "__main__":
 	parser = CULParser()
-	crawler = PaperCrawler("http://www.citeulike.org/home", parser)
+	crawler = PaperCrawler("http://www.citeulike.org/home/page/1", parser)
 	page = crawler.crawl()
-	article_ids = crawler.parse(page)
-	for id in article_ids:
-		url = "http://www.citeulike.org/bibtex/user/ricardcasas/article/"
-		url += id
-		url += "?do_username_prefix=0&key_type=0&incl_amazon=1&clean_urls=1&smart_wrap=1&q="
-		print url
-		page = crawler.crawl(url)
-		print page
-		file = open(id + ".txt", "w")
-		file.write(page)
-		file.close()
+	
