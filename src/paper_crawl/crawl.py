@@ -77,4 +77,4 @@ if __name__ == "__main__":
 	parser = CULParser()
 	crawler = PaperCrawler("http://www.citeulike.org/home/page/1", parser)
 	page = crawler.crawl()
-	
+

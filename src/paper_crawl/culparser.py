@@ -11,5 +11,5 @@ class CULParser(Parser):
 			id = s.split(':')[1]
 			article_ids.append(id)
 		print  repr(article_ids)
-		return article_ids 
+		return article_ids
 
