@@ -128,6 +128,7 @@ def customisations(record):
             if ident == 'issn':
                 if 'journal' in record:
                     if 'identifier' not in record['journal']:
+                        record['journal'] = {}
                         record['journal']['identifier'] = []
                     record['journal']['identifier'].append({"id": record[ident], "type": "issn"})
             else:
@@ -343,7 +344,7 @@ class BibTexParser(object):
             if val == k:
                 val = self.replace_dict[k]
         if not isinstance(val, str):
-            val = str(val, self.encoding, 'ignore')
+            val = str(val).encode(self.encoding)
 
         for translation in (self.unicode_to_latex, self.unicode_to_crappy_latex1):
             if '\\' in val or '{' in val:
@@ -381,7 +382,7 @@ class BibTexParser(object):
         if key in list(self.alt_dict.keys()):
             key = self.alt_dict[key]
         if not isinstance(key, str):
-            return str(key, 'utf-8')
+            return str(key).encode('utf-8')
         else:
             return key
 
