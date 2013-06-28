@@ -4,6 +4,6 @@ import random
 from Constants import *
 
 def random_sleep():
-	sleep_time = SLEEPMAXTIME * random.random()
+	sleep_time = SLEEPMAXTIME * (random.random() + 1)
 	sleep(sleep_time)
 
