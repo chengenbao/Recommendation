@@ -2,6 +2,10 @@
 
 import threading
 from time import sleep
+import random
+from Util import *
+
+
 
 # Ensure booleans exist (not needed for Python 2.2.1 or higher)
 try:
@@ -54,6 +58,7 @@ class ThreadPool:
         while newNumThreads > len(self.__threads):
             newThread = ThreadPoolThread(self)
             self.__threads.append(newThread)
+            random_sleep()
             newThread.start()
         # If we need to shrink the pool, do so
         while newNumThreads < len(self.__threads):
@@ -92,6 +97,8 @@ class ThreadPool:
         """ Retrieve the next task from the task queue.  For use
         only by ThreadPoolThread objects contained in the pool."""
 
+        # random sleep
+        random_sleep()
         self.__taskLock.acquire()
         try:
             if self.__tasks == []:
