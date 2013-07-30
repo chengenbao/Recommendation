@@ -196,7 +196,7 @@ public class RecommendationSrv implements IRecommendation {
 		});
 		
 		List<String> result = new ArrayList<String>();
-		for(int i = 0; i < RECNUM; ++i) {
+		for(int i = 0; i < RECNUM && i < tmpList.size(); ++i) {
 			result.add(tmpList.get(i).getKey());
 		}
 		return result;
